@@ -1,0 +1,64 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Strikes
+ *
+ * @ORM\Table(name="strikes", indexes={@ORM\Index(name="idx_match_id", columns={"MatchId"})})
+ * @ORM\Entity
+ */
+class Strikes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="FighterId", type="integer", nullable=false)
+     */
+    private $fighterid;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="PointValue", type="boolean", nullable=false)
+     */
+    private $pointvalue;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Timestamp", type="datetime", nullable=false)
+     */
+    private $timestamp = 'CURRENT_TIMESTAMP(3)';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Round", type="boolean", nullable=false)
+     */
+    private $round;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="StrikeId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $strikeid;
+
+    /**
+     * @var \AppBundle\Entity\Matches
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Matches")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="MatchId", referencedColumnName="MatchId")
+     * })
+     */
+    private $matchid;
+
+
+}
+

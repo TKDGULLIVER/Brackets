@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fighters</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ fighter.name }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ fighter.age }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ fighter.weight }}</td>
+            </tr>
+            <tr>
+                <th>Competinginforms</th>
+                <td>{% if fighter.competinginforms %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Competinginsparring</th>
+                <td>{% if fighter.competinginsparring %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Competinginbreaking</th>
+                <td>{% if fighter.competinginbreaking %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ fighter.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fighters_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fighters_edit', { 'id': fighter.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

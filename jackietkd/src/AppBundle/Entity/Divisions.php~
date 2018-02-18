@@ -1,0 +1,95 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Divisions
+ *
+ * @ORM\Table(name="divisions", indexes={@ORM\Index(name="idx_lower_rank", columns={"LowerRankId"}), @ORM\Index(name="idx_upper_rank", columns={"UpperRankId"})})
+ * @ORM\Entity
+ */
+class Divisions
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=100, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="NumRounds", type="boolean", nullable=false)
+     */
+    private $numrounds;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="RoundDuration", type="integer", nullable=false)
+     */
+    private $roundduration;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="BreakDuration", type="integer", nullable=false)
+     */
+    private $breakduration;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Gender", type="boolean", nullable=false)
+     */
+    private $gender;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="LowerAge", type="boolean", nullable=false)
+     */
+    private $lowerage;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="UpperAge", type="boolean", nullable=false)
+     */
+    private $upperage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="DivisionId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $divisionid;
+
+    /**
+     * @var \AppBundle\Entity\Ranks
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ranks")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="UpperRankId", referencedColumnName="RankId")
+     * })
+     */
+    private $upperrankid;
+
+    /**
+     * @var \AppBundle\Entity\Ranks
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ranks")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="LowerRankId", referencedColumnName="RankId")
+     * })
+     */
+    private $lowerrankid;
+
+
+}
+

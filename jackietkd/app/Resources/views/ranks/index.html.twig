@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ranks list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rank in ranks %}
+            <tr>
+                <td><a href="{{ path('ranks_show', { 'id': rank.id }) }}">{{ rank.name }}</a></td>
+                <td>{{ rank.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ranks_show', { 'id': rank.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ranks_edit', { 'id': rank.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ranks_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

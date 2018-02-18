@@ -1,0 +1,81 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fighters
+ *
+ * @ORM\Table(name="fighters", indexes={@ORM\Index(name="idx_school_id", columns={"SchoolId"}), @ORM\Index(name="idx_rank", columns={"RankId"})})
+ * @ORM\Entity
+ */
+class Fighters
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=100, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Age", type="boolean", nullable=false)
+     */
+    private $age;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="CompetingInForms", type="boolean", nullable=false)
+     */
+    private $competinginforms;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="CompetingInSparring", type="boolean", nullable=false)
+     */
+    private $competinginsparring;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="CompetingInBreaking", type="boolean", nullable=false)
+     */
+    private $competinginbreaking;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="FighterId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $fighterid;
+
+    /**
+     * @var \AppBundle\Entity\Schools
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Schools")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="SchoolId", referencedColumnName="SchoolId")
+     * })
+     */
+    private $schoolid;
+
+    /**
+     * @var \AppBundle\Entity\Ranks
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ranks")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="RankId", referencedColumnName="RankId")
+     * })
+     */
+    private $rankid;
+
+
+}
+

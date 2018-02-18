@@ -1,0 +1,33 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Schools
+ *
+ * @ORM\Table(name="schools", uniqueConstraints={@ORM\UniqueConstraint(name="idx_name", columns={"Name"})})
+ * @ORM\Entity
+ */
+class Schools
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=100, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="SchoolId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $schoolid;
+
+
+}
+

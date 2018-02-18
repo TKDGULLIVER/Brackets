@@ -1,0 +1,115 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Matches
+ *
+ * @ORM\Table(name="matches", indexes={@ORM\Index(name="idx_station", columns={"StationId"}), @ORM\Index(name="idx_division", columns={"DivisionId"}), @ORM\Index(name="idx_red_fighter", columns={"RedFighterId"}), @ORM\Index(name="idx_blue_fighter", columns={"BlueFighterId"})})
+ * @ORM\Entity
+ */
+class Matches
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="RedScore", type="smallint", nullable=false)
+     */
+    private $redscore;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="BlueScore", type="smallint", nullable=false)
+     */
+    private $bluescore;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="MatchStartTime", type="datetime", nullable=true)
+     */
+    private $matchstarttime;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="MatchEndTime", type="datetime", nullable=true)
+     */
+    private $matchendtime;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="CurrentRound", type="boolean", nullable=false)
+     */
+    private $currentround;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="RemainingSeconds", type="integer", nullable=false)
+     */
+    private $remainingseconds;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="RoundInProgress", type="boolean", nullable=false)
+     */
+    private $roundinprogress;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="MatchId", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $matchid;
+
+    /**
+     * @var \AppBundle\Entity\Stations
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Stations")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="StationId", referencedColumnName="StationId")
+     * })
+     */
+    private $stationid;
+
+    /**
+     * @var \AppBundle\Entity\Fighters
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Fighters")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="RedFighterId", referencedColumnName="FighterId")
+     * })
+     */
+    private $redfighterid;
+
+    /**
+     * @var \AppBundle\Entity\Divisions
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Divisions")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="DivisionId", referencedColumnName="DivisionId")
+     * })
+     */
+    private $divisionid;
+
+    /**
+     * @var \AppBundle\Entity\Fighters
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Fighters")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="BlueFighterId", referencedColumnName="FighterId")
+     * })
+     */
+    private $bluefighterid;
+
+
+}
+

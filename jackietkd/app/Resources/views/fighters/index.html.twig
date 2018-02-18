@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fighters - {{ fighters|length }} Total</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Gender</th>
+                <th>Competinginforms</th>
+                <th>Competinginsparring</th>
+                <th>Competinginbreaking</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fighter in fighters %}
+            <tr>
+                <td><a href="{{ path('fighters_show', { 'id': fighter.id }) }}">{{ fighter.name }}</a></td>
+                <td>{{ fighter.age }}</td>
+                <td>{{ fighter.weight }}</td>
+                <td>{% if fighter.gender %}Female{% else %}Male{% endif %}</td>
+                <td>{% if fighter.competinginforms %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fighter.competinginsparring %}Yes{% else %}No{% endif %}</td>
+                <td>{% if fighter.competinginbreaking %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <a href="{{ path('fighters_show', { 'id': fighter.id }) }}">show</a> | <a href="{{ path('fighters_edit', { 'id': fighter.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fighters_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

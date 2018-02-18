@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Divisions</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ division.name }}</td>
+            </tr>
+            <tr>
+                <th>Numrounds</th>
+                <td>{{ division.numrounds }}</td>
+            </tr>
+            <tr>
+                <th>Roundduration</th>
+                <td>{{ division.roundduration }}</td>
+            </tr>
+            <tr>
+                <th>Breakduration</th>
+                <td>{{ division.breakduration }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{% if division.gender %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lowerage</th>
+                <td>{{ division.lowerage }}</td>
+            </tr>
+            <tr>
+                <th>Upperage</th>
+                <td>{{ division.upperage }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ division.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('divisions_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('divisions_edit', { 'id': division.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

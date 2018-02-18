@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Divisions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Numrounds</th>
+                <th>Roundduration</th>
+                <th>Breakduration</th>
+                <th>Gender</th>
+                <th>Age Range</th>
+                <th>Rank Range</th>
+                <th>Weight Range</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for division in divisions %}
+            <tr>
+                <td><a href="{{ path('divisions_show', { 'id': division.id }) }}">{{ division.name }}</a></td>
+                <td>{{ division.numrounds }}</td>
+                <td>{{ division.roundduration }}</td>
+                <td>{{ division.breakduration }}</td>
+                <td>{% if division.gender %}Female{% else %}Male{% endif %}</td>
+                <td>{{ division.lowerage }}-{{ division.upperage }}</td>
+                <td>{{ division.lowerrank }}-{{ division.upperrank }}</td>
+                <td>{{ division.lowerweight }}-{{ division.upperweight }}</td>
+                <td><a href="{{ path('divisions_show', { 'id': division.id }) }}">show</a> | <a href="{{ path('divisions_edit', { 'id': division.id }) }}">edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('divisions_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
